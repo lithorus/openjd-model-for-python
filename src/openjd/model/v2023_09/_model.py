@@ -2190,6 +2190,36 @@ class Job(OpenJDModel_v2023_09):
         """
         self.steps.append(step)
 
+    def del_step_by_name(self, *, step_name: str):
+        """
+
+        Args:
+            step_name: Name of the step to be removed
+
+        Returns:
+
+        """
+        step = self.get_step_by_name(step_name=step_name)
+        try:
+            self.steps.remove(step)
+            return True
+        except ValueError:
+            # Return false if no step with the name given was found
+            return False
+
+    def get_step_by_name(self, *, step_name: str):
+        """
+
+        Args:
+            step_name: Name of the step to be found
+
+        Returns:
+            Step
+        """
+
+        for step in self.steps:
+            if step.name == step_name:
+                return step
 
 class JobTemplate(OpenJDModel_v2023_09):
     """Definition of an Open Job Description Job Template.
