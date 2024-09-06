@@ -2181,6 +2181,15 @@ class Job(OpenJDModel_v2023_09):
     parameters: Optional[JobParameters] = None
     jobEnvironments: Optional[JobEnvironmentsList] = None
 
+    def add_step(self, *, step: Step):
+        """
+        Function to dynamically add step to jobs
+        Args:
+            step (Step): Step to be added
+
+        """
+        self.steps.append(step)
+
 
 class JobTemplate(OpenJDModel_v2023_09):
     """Definition of an Open Job Description Job Template.
